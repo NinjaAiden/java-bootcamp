@@ -72,33 +72,65 @@ public class Hangman {
 
         Scanner scan = new Scanner(System.in);
 
-        // get random word from list
-        String randomWord = words[(int)(Math.random() * words.length)];
+        int guessCount = 0;
+        
+        // get word by calling getWord()
+        char[] word = getWord();
 
         // call printGameScreen
-        printGameScreen(randomWord);
+        printGameScreen(word, guessCount);
 
         scan.close();
 
     }
 
-    public static void printGameScreen(String randomWord) {
+    /**
+     *  Function name - getWord
+     *  @return word (char[])
+     * 
+     *  Inside the function:
+     *      1. Get random word from list of words
+     *      2. pass word from a String to a char array and return
+     */
+   public static char[] getWord(){
 
-        // pass randomWord string to a char array
-        char word[] = new char[randomWord.length()];
-        for (int i = 0; i < randomWord.length(); i++) {
-            word[i] = randomWord.charAt(i);
-        }
+    // get random word from list
+    String randomWord = words[(int)(Math.random() * words.length)];
+
+    // pass randomWord string to a char array
+    char word[] = new char[randomWord.length()];
+    for (int i = 0; i < randomWord.length(); i++) {
+        word[i] = randomWord.charAt(i);
+    }
+
+    return word;
+   }
+
+    /**
+     * Function name - printGameScreen
+     *  @param word (char[])
+     *  @param int guesses
+     * 
+     *  Inside the function:
+     *      1. print gallows (use guessCount to access correct stage)
+     *      2. hide word and print empty spaces
+     *      3. print missed guesses
+     *      4. Prompt for next guess
+     */
+
+    public static void printGameScreen(char[] word, int guesses) {        
 
         //print starting gallows
-        System.out.println(gallows[0]);
+        System.out.println(gallows[guesses]);
 
+        //hide word
         System.out.print("Word: ");
         for (int i = 0; i < word.length; i++) {
             System.out.print("_ ");
-        }
-    
+        }   
 
         System.out.println("\n\nMisses: ");
+
+        System.out.println("\nGuess: ");
     }
 }
