@@ -72,16 +72,33 @@ public class Hangman {
 
         Scanner scan = new Scanner(System.in);
 
-        int guessCount = 0;
+        // initialise counter for incorrect guesses
+        int wrongGuessCount = 0;
         
-        // get word by calling getWord()
-        char[] word = getWord();
+        char[] word = getWord();                    // get word by calling getWord()
+        char[] hiddenWord = new char[word.length];  // create new hidden word array
+        char[] missedGuesses = new char[6];         // create array for missed guesses. Max wrong turns is 6
+        
+        //hide word
+        for (int i = 0; i < hiddenWord.length; i++) {
+            hiddenWord[i] = '_';
+        }   
 
         // call printGameScreen
-        printGameScreen(word, guessCount);
+        printGameScreen(hiddenWord, wrongGuessCount, missedGuesses);
+
+        char playerGuess = scan.next().charAt(0);
+        for (int i = 0; i < word.length; i++){
+            if (word[i] == playerGuess) {
+                hiddenWord[i] = playerGuess;
+            } else {
+                missedGuesses[wrongGuessCount] = playerGuess;
+            }
+        }
+
+        printGameScreen(hiddenWord, wrongGuessCount, missedGuesses);
 
         scan.close();
-
     }
 
     /**
@@ -118,19 +135,15 @@ public class Hangman {
      *      4. Prompt for next guess
      */
 
-    public static void printGameScreen(char[] word, int guesses) {        
+    public static void printGameScreen(char[] hiddenWord, int guesses, char[] misses) {        
 
-        //print starting gallows
-        System.out.println(gallows[guesses]);
+        //print gallows
+        System.out.println("\n" + gallows[guesses]);
 
-        //hide word
-        System.out.print("Word: ");
-        for (int i = 0; i < word.length; i++) {
-            System.out.print("_ ");
-        }   
+        System.out.print("Word: " + new String(hiddenWord));
 
-        System.out.println("\n\nMisses: ");
+        System.out.println("\n\nMisses: " + new String(misses));
 
-        System.out.println("\nGuess: ");
+        System.out.print("\nGuess: ");
     }
 }
