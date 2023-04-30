@@ -12,7 +12,8 @@ public class Hangman {
     "tiger", "toad", "trout", "turkey", "turtle", "weasel", "whale", "wolf",
     "wombat", "zebra"};
 
-    public static String[] gallows = {"+---+\n" +
+    public static String[] gallows = {
+    "+---+\n" +
     "|   |\n" +
     "    |\n" +
     "    |\n" +
@@ -87,16 +88,24 @@ public class Hangman {
         // call printGameScreen
         printGameScreen(hiddenWord, wrongGuessCount, missedGuesses);
 
-        char playerGuess = scan.next().charAt(0);
-        for (int i = 0; i < word.length; i++){
-            if (word[i] == playerGuess) {
-                hiddenWord[i] = playerGuess;
-            } else {
-                missedGuesses[wrongGuessCount] = playerGuess;
+        while (wrongGuessCount <= 6){
+
+            char playerGuess = scan.next().charAt(0);
+            for (int i = 0; i < word.length; i++){
+                if (word[i] == playerGuess) {
+                    hiddenWord[i] = playerGuess;
+                } else {
+                    missedGuesses[wrongGuessCount] = playerGuess;
+                }
             }
+
+            printGameScreen(hiddenWord, wrongGuessCount, missedGuesses);
+
+            checkWin(hiddenWord, word);
+
         }
 
-        printGameScreen(hiddenWord, wrongGuessCount, missedGuesses);
+        
 
         scan.close();
     }
@@ -135,15 +144,26 @@ public class Hangman {
      *      4. Prompt for next guess
      */
 
-    public static void printGameScreen(char[] hiddenWord, int guesses, char[] misses) {        
+    public static void printGameScreen(char[] hiddenWord, int wrongGuessCount, char[] wrongLetters) {        
 
         //print gallows
-        System.out.println("\n" + gallows[guesses]);
+        System.out.println("\n" + gallows[wrongGuessCount]);
 
         System.out.print("Word: " + new String(hiddenWord));
 
-        System.out.println("\n\nMisses: " + new String(misses));
+        System.out.println("\n\nMisses: " + new String(wrongLetters));
 
         System.out.print("\nGuess: ");
+    }
+
+    public static void checkWin(char[] hiddenWord, char[] word){
+
+        String hiddenWordString = new String(hiddenWord);
+        String wordString = new String(word);
+
+        if (hiddenWordString.equals(wordString)){
+            System.out.println("Congratulations! You win!");
+            System.exit(0);
+        }
     }
 }
