@@ -9,17 +9,27 @@ public class Main {
         nissan.setColor("Jet Black");
         dodge.setPrice(dodge.getPrice() / 2);
 
-        System.out.println("This " + nissan.getMake() + " is worth $" + nissan.getPrice() + 
-        ". It was built in " + nissan.getYear() + ". It is " + nissan.getColor() + ".\n");
+        Car nissan2 = new Car(nissan);
 
-        System.out.println("This " + dodge.getMake() + " is worth $" + dodge.getPrice() + 
-        ". It was built in " + dodge.getYear() + ". It is " + dodge.getColor() + ".\n");
+        nissan2.setColor("Yellow");
+        nissan.setColor("Orange");
+        nissan2.setColor("Blue");
+        nissan.setColor("Purple");
+        nissan2.setColor("Fuchsia");
+        nissan.setColor("Beige");
 
         Person passenger = 
             new Person("Mike", "English", "February 23rd 1987", new String[3], 227 );
 
+        Person passenger2 = new Person(passenger);
+
+        passenger2.setName("Lewis");
+        passenger2.setSeatNumber(226);
+
         System.out.println(passenger.getName() + " is " + passenger.getNationality() + ", date of birth is " + 
-            passenger.getDateOfBirth() + ". Passport details are " + (Arrays.toString(passenger.getPassport())) + 
-            " and is sitting in seat number " + passenger.getSeatNumber());
+            passenger.getDateOfBirth() + " and is sitting in seat number " + passenger.getSeatNumber());
+
+        System.out.println(passenger2.getName() + " is " + passenger2.getNationality() + ", date of birth is " + 
+            passenger2.getDateOfBirth() + " and is sitting in seat number " + passenger2.getSeatNumber());
     }
 }
