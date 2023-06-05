@@ -1,35 +1,51 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Car nissan = new Car("Nissan", 10000, 2020, "Green");   
+    
+        Scanner scan = new Scanner(System.in);
+        
+        Car[] cars = new Car[] {
+            new Car("Nissan", 5000, 2020, "red", new String[] {"tires", "keys"}),
+            new Car("Dodge", 8500, 2019, "blue", new String[] {"tires", "keys"}),
+            new Car("Nissan", 5000, 2017, "yellow", new String[] {"tires", "filter"}),
+            new Car("Honda", 7000, 2019, "orange", new String[] {"tires", "filter"}),
+            new Car("Mercedes", 12000, 2015, "jet black", new String[] {"tires", "filter", "transmission"})
+        };
+        
+        Dealership dealership = new Dealership(cars);
+        
 
-        Car dodge = new Car("Dodge", 11000, 2019, "Blue");
+        System.out.println("\n ****** JAVA DEALERSHIP! ****** \n");        
+        System.out.println("Feel free to browse through our collection of cars.\n");
+        System.out.println(dealership);
+        System.out.println("Which car are you interested in? (0 - 4).\n");
+        int index = scan.nextInt();
 
-        nissan.setColor("Jet Black");
-        dodge.setPrice(dodge.getPrice() / 2);
+        dealership.sell(index);
 
-        Car nissan2 = new Car(nissan);
-
-        nissan2.setColor("Yellow");
-        nissan.setColor("Orange");
-        nissan2.setColor("Blue");
-        nissan.setColor("Purple");
-        nissan2.setColor("Fuchsia");
-        nissan.setColor("Beige");
+        scan.close();
 
         Person passenger = 
-            new Person("Mike", "English", "February 23rd 1987", new String[3], 227 );
+            new Person("Mike", "English", "February 23rd 1987", 0);
 
-        Person passenger2 = new Person(passenger);
 
-        passenger2.setName("Lewis");
-        passenger2.setSeatNumber(226);
+        System.out.println("\nName: " + passenger.getName() + "\n" + 
+        "Nationality: " + passenger.getNationality() + "\n" + 
+        "Date of Birth: " + passenger.getDateOfBirth() + "\n" +
+        "Seat Number: " + passenger.getSeatNumber());
 
-        System.out.println(passenger.getName() + " is " + passenger.getNationality() + ", date of birth is " + 
-            passenger.getDateOfBirth() + " and is sitting in seat number " + passenger.getSeatNumber());
+        if (passenger.applyPassport()){
+            passenger.setPassport();
+            System.out.println("Passport: " +
+            Arrays.toString(passenger.getPassport())); 
+        }else {
+            System.out.println("Passport: " +
+            Arrays.toString(passenger.getPassport())); 
+        }
 
-        System.out.println(passenger2.getName() + " is " + passenger2.getNationality() + ", date of birth is " + 
-            passenger2.getDateOfBirth() + " and is sitting in seat number " + passenger2.getSeatNumber());
+        System.out.println("\nTest case \n" + passenger);
+
     }
 }
