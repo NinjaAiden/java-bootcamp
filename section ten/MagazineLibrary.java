@@ -8,14 +8,17 @@ public class MagazineLibrary {
     }
 
     public Magazine getMagazine(int index){
-        return new Magazine(magazines.get(index));
+        Magazine mCopy = new Magazine(this.magazines.get(index));
+        return mCopy;
     }
 
-    public void setMagazine(int index, Magazine magazine){
-        this.magazines.set(index, new Magazine(magazine));
+    public void setMagazine(int index, Magazine newMagazine){
+        Magazine mCopy = new Magazine(newMagazine);
+        this.magazines.set(index, mCopy);
     }
 
-    public void addMagazine(Magazine magazine){
-        this.magazines.add(new Magazine(magazine));
+    public void addMagazine(Magazine newMagazine){
+        Magazine mCopy = new Magazine(newMagazine);
+        this.magazines.add(mCopy);
     }
 }
