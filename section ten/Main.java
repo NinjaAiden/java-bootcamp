@@ -40,16 +40,22 @@ public class Main {
             System.out.print("\nPlease choose an integer between 0 - 9: ");
 
             // 1. Anticipate the user not entering an integer.
-
+            if (!scanner.hasNextInt()){
+                scanner.next();
+                continue;
+            }
             int choice = scanner.nextInt();
 
             // 2. Anticipate the choice being incorrect.
+            if (incorrectChoice(choice))    continue;
             return choice;
         }
     }
 
     public static boolean incorrectChoice(int choice) {
-        // TODO
+        if (choice < 0 || choice > 9){
+            return true;
+        }
         return false;
     }
 
@@ -58,17 +64,22 @@ public class Main {
             System.out.print("\nSet a new rating for " + name + ": ");
             
             // 1. Anticipate the user not entering a double.
-
+            if (!scanner.hasNextDouble()){
+                scanner.next();
+                continue;
+            }
             double rating = scanner.nextDouble();
             
             // 2. Anticipate the rating being incorrect.
-
+            if (incorrectRating(rating))    continue;
             return rating;
          }
     }
 
     public static boolean incorrectRating(double rating) {
-        // TODO
+        if (rating < 0 || rating > 10){
+            return true;
+        }
         return false;
     }
 
@@ -77,10 +88,12 @@ public class Main {
         Scanner scanFile = new Scanner(fis);
 
         while (scanFile.hasNextLine()) {
-            // TODO
+            String line = scanFile.nextLine();
+            String[] words = line.split("--");
+            store.addMovie(new Movie(words[0], words[1], Double.parseDouble(words[2])));
         }
         scanFile.close();
-    }
+   }
 
     public static void printStore() {
         System.out.println("********************************MOVIE STORE*******************************");
