@@ -1,23 +1,64 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         
+        Scanner scanner = new Scanner(System.in);
+
+        String cityName = promptForCityName(scanner);
+
+        String country = promptForCountry(scanner);
+
+        int population = promptForPopulation(scanner);
+
+        City newCity = new City(cityName, country, population);
+
         CityPopulationTracker tracker = new CityPopulationTracker();
-    
-        // Test the addCity method
-        tracker.addCity(new City("New York", "USA", 8550405));
-        tracker.addCity(new City("Los Angeles", "USA", 3971883));
+        tracker.addCity(newCity);
 
-        // Test the getCity method
-        City nyCity = tracker.getCity("New York");
-        System.out.println("Population of New York: " + nyCity.getPopulation());
-
-        // Test the setCity method
-        City updatedNyCity = new City("New York", "USA", 8600000);
-        tracker.setCity(updatedNyCity);
-
-        // Verify that the city data was updated
-        nyCity = tracker.getCity("New York");
-        System.out.println("Updated population of New York: " + nyCity.getPopulation());
+        System.out.println("City added to the tracker: " + newCity.getName());
             
+    }
+
+    public static boolean isNullOrBlank(String input){
+        return input == null || input.isBlank();
+    }
+
+    public static boolean incorrectPopulation(int population){
+        return population <= 0;
+    }
+
+    public static String promptForCityName(Scanner scanner){
+        while (true){
+            System.out.println("\nPlease enter a valid city name: ");
+            String cityName = scanner.nextLine();
+            if(!isNullOrBlank(cityName)){
+                return cityName;
+            }
+        }
+    }
+
+    public static String promptForCountry(Scanner scanner){
+        while (true){
+            System.out.println("\nPlease enter a valid country: ");
+            String country = scanner.nextLine();
+            if(!isNullOrBlank(country)){
+                return country;
+            }
+        }
+    }
+
+    public static int promptForPopulation(Scanner scanner){
+        while (true){
+            System.out.println("\nPlease enter a valid population (greataer than zero): ");
+            if (!scanner.hasNextInt()){
+                scanner.next();
+                continue;
+            }
+            int population = scanner.nextInt();
+            if (!incorrectPopulation(population)){
+                return population;
+            }
+        }
     }
 }
