@@ -10,6 +10,12 @@ public class City {
         setPopulation(population);
     }
 
+    public City(City source){
+        setName(source.getName());
+        setCountry(source.getCountry());
+        setPopulation(source.getPopulation());
+    }
+
     public String getName(){
         return this.name;
     }
@@ -29,6 +35,7 @@ public class City {
         if (country == null || country.isBlank()){
             throw new IllegalArgumentException("Country must not be null/blank");
         }
+        this.country = country;
     }
 
     public long getPopulation(){
@@ -39,5 +46,6 @@ public class City {
         if (population <= 0){
             throw new IllegalArgumentException("Population must be greater than zero");
         }
+        this.population = population;
     }
 }
