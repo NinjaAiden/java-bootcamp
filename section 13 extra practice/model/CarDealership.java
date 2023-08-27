@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CarDealership {
 
-    ArrayList<Car> cars = new ArrayList<>();
+    private ArrayList<Car> cars;
 
     public CarDealership(){
         cars = new ArrayList<>();
