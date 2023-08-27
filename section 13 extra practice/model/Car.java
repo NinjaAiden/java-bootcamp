@@ -7,6 +7,9 @@ public class Car {
     private int productionYear;
     private double price;
 
+    public static final int MIN_YEAR = 1900;
+    public static final double MAX_PRICE = 200_000;
+
     public enum BodyType {
         SEDAN, COUPE, HATCHBACK, SUV, TRUCK, VAN,
     }
@@ -65,7 +68,7 @@ public class Car {
     }
 
     public void setProductionYear(int productionYear){
-        if (productionYear <= 0){
+        if (productionYear <= MIN_YEAR){
             throw new IllegalArgumentException("Production year must be greater than zero");
         }
         this. productionYear = productionYear;
@@ -76,8 +79,8 @@ public class Car {
     }
 
     public void setPrice(double price){
-        if (price <= 0){
-            throw new IllegalArgumentException("Price must be greater than zero");
+        if (price <= 0 || price >= MAX_PRICE){
+            throw new IllegalArgumentException("Price must be within a valid range");
         }
         this.price = price;
     }
