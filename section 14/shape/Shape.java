@@ -1,6 +1,6 @@
 package shape;
 
-public class Shape {  
+public abstract class Shape {  
     
     private double radius;
 
@@ -15,5 +15,8 @@ public class Shape {
     public void setRadius(double radius) {
         this.radius = radius;
     }
+
+    public abstract double getArea();
+    public abstract double getVolume();
 
 }

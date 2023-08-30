@@ -16,6 +16,15 @@ public class Cylinder extends Shape {
     public void setHeight(double height) {
         this.height = height;
     }
+
+    @Override
+    public double getArea(){
+        return 2 * Math.PI * super.getRadius() * this.height + 2 * Math.PI * Math.pow(super.getRadius(), 2);
+    }
+
+    public double getVolume(){
+        return Math.PI * Math.pow(super.getRadius(), 2) * this.height;
+    }
   
 }
   
