@@ -10,6 +10,11 @@ public class Centrifuge extends LabEquipment {
         setMaxRPM(maxRPM);
     }
 
+    public Centrifuge(Centrifuge source){
+        super(source);
+        setMaxRPM(source.maxRPM);
+    }
+
     public int getMaxRPM(){
         return this.maxRPM;
     }
@@ -24,6 +29,11 @@ public class Centrifuge extends LabEquipment {
     @Override
     public String performMaintenance(){
         return "Centrifuge maintenance: check the rotor, clean the chamber, and lubricate the spindle";
+    }
+
+    @Override
+    public LabEquipment clone(){
+        return new Centrifuge(this);        
     }
     
 }
