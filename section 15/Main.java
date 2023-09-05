@@ -15,7 +15,9 @@ public class Main {
             new Payment(LocalDate.of(2020, 6, 30), 100.00)
         );
 
-        // TODO
+        payments.forEach((payment -> System.out.println(
+            "Date: " + payment.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyy\n")) +
+            "Amount: " + payment.getAmount() + "\n---")));
 
       }
     
