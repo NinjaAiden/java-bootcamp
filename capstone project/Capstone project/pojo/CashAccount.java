@@ -11,7 +11,6 @@ public class CashAccount extends TradeAccount {
         setCashBalance(cashBalance);
     }
 
-
     public BigDecimal getCashBalance() {
         return this.cashBalance;
     }

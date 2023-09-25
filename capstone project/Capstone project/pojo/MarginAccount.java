@@ -16,7 +16,6 @@ public class MarginAccount extends TradeAccount {
     }
 
     public void setMargin(BigDecimal margin){
-
         this.margin = margin;
     }
 
