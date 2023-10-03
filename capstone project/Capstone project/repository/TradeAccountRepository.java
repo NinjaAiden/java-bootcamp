@@ -9,8 +9,6 @@ public class TradeAccountRepository {
 
     private Map<String, TradeAccount> datastore = new HashMap<>();
 
-    // CRUD ops go here
-
     public void createTradeAccount(TradeAccount tradeAccount){
 
         this.datastore.put(tradeAccount.getId(), tradeAccount.clone());
